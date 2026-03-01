@@ -1,0 +1,46 @@
+{
+  "Ageratum": {
+    "toxic": true,
+    "remedy": "Drink water. Eat light food like plain rice and banana. Emergency care required"
+  },
+  "Argemone": {
+    "toxic": true,
+    "remedy": "Emergency care required"
+  },
+  "Calotropis Gigantea": {
+    "toxic": true,
+    "remedy": "Wash mouth and skin immediatly. Drink water/milk. Emergency care required"
+  },
+  "Castor": {
+    "toxic": true,
+    "remedy": "Drink water. Emergency care required"
+  },
+  "Centella Asiatica": {
+    "toxic": false,
+    "remedy": "Not required. Good for Health."
+  },
+  "Datura": {
+    "toxic": true,
+    "remedy": "No home remedy. Emergency care required."
+  },
+  "Euphorbia": {
+    "toxic": true,
+    "remedy": "Drink water. Emergency care required."
+  },
+  "Lantana Camara": {
+    "toxic": true,
+    "remedy": "Rinse mouth. Drink water and go to hospital ASAP."
+  },
+  "Ocimum Sanctum": {
+    "toxic": false,
+    "remedy": "Not required. Good for Health."
+  },
+  "Oleander": {
+    "toxic": true,
+    "remedy": "Immediate first aid. Rinse mouth properly. Drink water. Emergency care required"
+  },
+  "Tridax": {
+    "toxic": false,
+    "remedy": "Non Toxic but recommended not to eat."
+  }
+}

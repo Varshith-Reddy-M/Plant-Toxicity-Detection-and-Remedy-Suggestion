@@ -1,0 +1,9 @@
+{
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none",
+        "reportUndefinedVariable": "none",
+        "reportGeneralTypeIssues": "none"
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}
