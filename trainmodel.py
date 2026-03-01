@@ -6,17 +6,11 @@ from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout # typ
 from tensorflow.keras.models import Model # type: ignore
 import json
 
-# =========================
-# SETTINGS
-# =========================
 DATASET_PATH = "Dataset"
 VAL_PATH = "valid"
 IMAGE_SIZE = (224, 224)
 BATCH_SIZE = 16
 
-# =========================
-# LOAD DATASET
-# =========================
 datagen = ImageDataGenerator(
     preprocessing_function=preprocess_input,
     validation_split=0.2,
@@ -41,7 +35,6 @@ val_data = datagen.flow_from_directory(
     subset="validation"
 )
 
-# Save class names
 class_indices = train_data.class_indices
 index_to_class = {v: k for k, v in class_indices.items()}
 
@@ -50,18 +43,12 @@ with open("class_names.json", "w") as f:
 
 print("Saved class names:", index_to_class)
 
-# =========================
-# LOAD BASE MODEL
-# =========================
 base_model = MobileNetV2(
     weights="imagenet",
     include_top=False,
     input_shape=(224, 224, 3)
 )
 
-# =========================
-# ADD CUSTOM CLASSIFIER
-# =========================
 x = base_model.output
 x = GlobalAveragePooling2D()(x)
 x = Dense(128, activation="relu")(x)
@@ -70,9 +57,9 @@ output = Dense(train_data.num_classes, activation="softmax")(x)
 
 model = Model(inputs=base_model.input, outputs=output)
 
-# =========================
+
 # PHASE 1: TRAIN TOP LAYERS
-# =========================
+
 print("\n--- Phase 1: Training top layers ---\n")
 
 base_model.trainable = False
@@ -89,9 +76,9 @@ model.fit(
     epochs=5
 )
 
-# =========================
+
 # PHASE 2: FINE-TUNING
-# =========================
+
 print("\n--- Phase 2: Fine-tuning top MobileNet layers ---\n")
 
 base_model.trainable = True
@@ -112,9 +99,6 @@ model.fit(
     epochs=5
 )
 
-# =========================
-# SAVE FINAL MODEL
-# =========================
 model.save("plant_model.h5")
 
 print("\n✅ Training Complete")
