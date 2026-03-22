@@ -86,8 +86,8 @@ NumPy
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/plant-toxicity-detector.git
-cd plant-toxicity-detector
+git clone https://github.com/your-username/Plant-Toxicity-Detection-and-Remedy-Suggestion.git
+cd Plant-Toxicity-Detection-and-Remedy
 pip install tensorflow opencv-python numpy
 ```
 
