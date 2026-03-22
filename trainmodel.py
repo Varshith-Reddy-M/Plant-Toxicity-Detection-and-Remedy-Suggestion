@@ -1,10 +1,11 @@
-import tensorflow as tf
+import tensorflow as tf 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout # type: ignore
-from tensorflow.keras.models import Model # type: ignore
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau # type: ignore
+from tensorflow.keras.applications import MobileNetV2 
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input 
+from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout 
+from tensorflow.keras.models import Model 
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau 
+import matplotlib.pyplot as plt
 import json
 
 DATASET_PATH = "Dataset"
@@ -61,13 +62,11 @@ callbacks = [
     ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3, min_lr=1e-7)
 ]
 
-
 # PHASE 1: TRAIN TOP LAYERS
 
 print("\n--- Phase 1: Training top layers ---\n")
 
 base_model.trainable = False
-
 model.compile(
     optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
     loss="categorical_crossentropy",
@@ -87,8 +86,6 @@ history1 = model.fit(
 print("\n--- Phase 2: Fine-tuning top MobileNet layers ---\n")
 
 base_model.trainable = True
-
-# Freeze early layers, unfreeze last 30 layers
 for layer in base_model.layers[:-30]:
     layer.trainable = False
 
@@ -105,9 +102,6 @@ history2 = model.fit(
     callbacks=callbacks
 )
 
-import matplotlib.pyplot as plt
-
-# Combine both phases
 acc = history1.history['accuracy'] + history2.history['accuracy']
 val_acc = history1.history['val_accuracy'] + history2.history['val_accuracy']
 loss = history1.history['loss'] + history2.history['loss']
@@ -115,10 +109,8 @@ val_loss = history1.history['val_loss'] + history2.history['val_loss']
 
 epochs_range = range(len(acc))
 
-# Plot
 plt.figure(figsize=(12, 5))
 
-# Accuracy
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label='Train Accuracy')
 plt.plot(epochs_range, val_acc, label='Val Accuracy')
@@ -126,7 +118,6 @@ plt.axvline(x=len(history1.history['accuracy']), color='gray', linestyle='--', l
 plt.title('Accuracy')
 plt.legend()
 
-# Loss
 plt.subplot(1, 2, 2)
 plt.plot(epochs_range, loss, label='Train Loss')
 plt.plot(epochs_range, val_loss, label='Val Loss')
@@ -135,7 +126,7 @@ plt.title('Loss')
 plt.legend()
 
 plt.tight_layout()
-plt.savefig("training_graph.png")  # saves as image file
+plt.savefig("training_graph.png")
 plt.show()
 print("📊 Graph saved as training_graph.png")
 

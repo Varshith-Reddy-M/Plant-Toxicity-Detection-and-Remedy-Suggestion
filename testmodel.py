@@ -28,7 +28,6 @@ class_index = int(np.argmax(prediction))
 confidence = float(np.max(prediction))
 
 plant_name = class_names[str(class_index)]
-
 THRESHOLD = 0.65
 
 if confidence < THRESHOLD:
