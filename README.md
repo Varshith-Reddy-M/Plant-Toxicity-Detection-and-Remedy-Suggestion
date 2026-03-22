@@ -86,7 +86,7 @@ NumPy
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/Plant-Toxicity-Detection-and-Remedy-Suggestion.git
+git clone https://github.com/Varshith-Reddy-M/Plant-Toxicity-Detection-and-Remedy-Suggestion.git
 cd Plant-Toxicity-Detection-and-Remedy
 pip install tensorflow opencv-python numpy
 ```
@@ -154,8 +154,6 @@ Phase 1 — Top layers only (base frozen)
 Phase 2 — Fine-tuning (last 30 MobileNetV2 layers unfrozen)
   Optimizer : Adam lr=0.00001
   Epochs    : 20
-
-Augmentation: rotation=25, zoom=0.2, horizontal_flip=True
 ```
 
 Dataset folder structure required:
