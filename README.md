@@ -26,9 +26,13 @@ A deep learning-based plant identification system that classifies plants from im
 | Calotropis Gigantea | Yes |
 | Castor | Yes |
 | Centella Asiatica | No |
+| Croton Shrub | Yes |
 | Datura | Yes |
 | Euphorbia | Yes |
+| Jatropha | Yes |
 | Lantana Camara | Yes |
+| Mimosa Pudica | No |
+| Money Plant | Yes |
 | Ocimum Sanctum | No |
 | Oleander | Yes |
 | Tridax | No |
@@ -62,6 +66,7 @@ Example Structure:
 ├── plantinfo.json        # Toxicity and remedy data per plant
 ├── trainmodel.py         # Model training script
 ├── testmodel.py          # Inference / prediction script
+├── training_graph.png    # Accuracy and Loss graph
 └── README.md
 ```
 
@@ -127,9 +132,13 @@ If confidence is below 65%:
 Base:      MobileNetV2 (pretrained on ImageNet)
 Input:     224 x 224 x 3
 Head:      GlobalAveragePooling2D
+           Dense(256, activation='relu')
+           Dropout(0.4)
            Dense(128, activation='relu')
-           Dropout(0.5)
-           Dense(11, activation='softmax')
+           Dropout(0.3)
+           Dense(64, activation='relu')
+           Dropout(0.2)
+           Dense(15, activation='softmax')
 Threshold: 0.65
 ```
 
@@ -140,11 +149,11 @@ Threshold: 0.65
 ```
 Phase 1 — Top layers only (base frozen)
   Optimizer : Adam lr=0.0001
-  Epochs    : 5
+  Epochs    : 20
 
 Phase 2 — Fine-tuning (last 30 MobileNetV2 layers unfrozen)
   Optimizer : Adam lr=0.00001
-  Epochs    : 5
+  Epochs    : 20
 
 Augmentation: rotation=25, zoom=0.2, horizontal_flip=True
 ```
