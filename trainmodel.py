@@ -80,7 +80,6 @@ history1 = model.fit(
     callbacks=callbacks
 )
 
-
 # PHASE 2: FINE-TUNING
 
 print("\n--- Phase 2: Fine-tuning top MobileNet layers ---\n")
