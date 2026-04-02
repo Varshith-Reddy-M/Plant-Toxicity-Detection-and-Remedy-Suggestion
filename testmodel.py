@@ -12,8 +12,8 @@ with open("class_names.json", "r") as f:
 with open("plantinfo.json", "r") as f:
     plant_info = json.load(f)
 
-image_path = r""
-img = cv2.imread(image_path)
+image_path = r"C:\Users\varsh\OneDrive\Desktop\Mini Project\test\Lantana Camara\LC2.jpg"
+img = cv2.imread(image_path) 
 
 if img is None:
     print("❌ Image not found")
