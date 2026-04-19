@@ -1,6 +1,6 @@
 # 🌿Plant Toxicity Detection and Remedy Suggestion
 
-A deep learning-based plant identification system that classifies plants from images and provides toxicity information along with first-aid remedies. Built using MobileNetV2 transfer learning with TensorFlow/Keras.
+A deep learning-based plant identification system that classifies plants from images and provides toxicity information along with first-aid remedies. Built using MobileNetV2 transfer learning with TensorFlow/Keras and embedded in Raspberry Pi.
 
 ---
 ## 🚀 Features
@@ -59,6 +59,7 @@ Example Structure:
 
 ```
 ├── Dataset               # Training dataset
+├── plant_model_saved     # Model for Raspberry Pi
 ├── test                  # Testing dataset
 ├── valid                 # Validation dataset for fine tuning
 ├── plant_model.h5        # Trained Keras model
@@ -66,6 +67,7 @@ Example Structure:
 ├── plantinfo.json        # Toxicity and remedy data per plant
 ├── trainmodel.py         # Model training script
 ├── testmodel.py          # Inference / prediction script
+├── pidetect.py           # Test Script for Raspberry Pi
 ├── training_graph.png    # Accuracy and Loss graph
 └── README.md
 ```
@@ -194,9 +196,7 @@ Increase number of plant species
 
 Expand dataset size
 
-Embedded AI deployment (Raspberry Pi)
-
-Add real-time camera integration
+Make the device more mobile
 
 ---
 
